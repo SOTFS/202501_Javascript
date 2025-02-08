@@ -13,36 +13,36 @@ $(document).ready(function () {
             var tarjetasHTML = "";
 
             $.each(climaCiudades[ciudadSeleccionada], function (index, clima) {
-                tarjetasHTML += '<div class="tarjeta">' +
-                    '<img class="poster" src="' + clima.img + '" alt="' + clima.estado + '">' +
-                    '<h2>' + clima.dia + '</h2>' +
-                    '<span>' + clima.estado + '</span>' +
-                    '<span class="temp" data-celsius-max="' + clima.tempMax + '" data-celsius-min="' + clima.tempMin + '">' + clima.tempMax + '°C ' + clima.tempMin + '°C</span>' +
-                    '</div>';
+                tarjetasHTML += "<div class=\"tarjeta\">" +
+                    "<img class=\"poster\" src=\"" + clima.img + "\" alt=\"" + clima.estado + "\">" +
+                    "<h2>" + clima.dia + "</h2>" +
+                    "<span>" + clima.estado + "</span>" +
+                    "<span class=\"temp\" data-celsius-max=\"" + clima.tempMax + "\" data-celsius-min=\"" + clima.tempMin + "\">" + clima.tempMax + "°C " + clima.tempMin + "°C</span>" +
+                    "</div>";
             });
 
             $("section").html(tarjetasHTML);
 
-            actualizarTemperaturas($('#temperatura').val());
+            actualizarTemperaturas($("#temperatura").val());
         }
     });
 
-    $('#temperatura').change(function () {
+    $("#temperatura").change(function () {
         var unidad = $(this).val();
         actualizarTemperaturas(unidad);
     });
 
     function actualizarTemperaturas(unidad) {
-        $('.temp').each(function () {
-            var tempMax = $(this).data('celsius-max');
-            var tempMin = $(this).data('celsius-min');
+        $(".temp").each(function () {
+            var tempMax = $(this).data("celsius-max");
+            var tempMin = $(this).data("celsius-min");
 
-            if (unidad === 'C') {
-                $(this).text(tempMax + '°C ' + tempMin + '°C');
+            if (unidad === "C") {
+                $(this).text(tempMax + "°C " + tempMin + "°C");
             } else {
                 var tempMaxF = (tempMax * 9 / 5) + 32;
                 var tempMinF = (tempMin * 9 / 5) + 32;
-                $(this).text(tempMaxF.toFixed(1) + '°F ' + tempMinF.toFixed(1) + '°F');
+                $(this).text(tempMaxF.toFixed(1) + "°F " + tempMinF.toFixed(1) + "°F");
             }
         });
     }
